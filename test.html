@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas width="400" height="400" id="gameArea" style="border: 1px solid black; display:block; margin-left: auto; margin-right: auto;"></canvas>
+
+    <script>
+        const canvas = document.getElementById("gameArea");
+        const ctx = canvas.getContext("2d");
+        let explosion = new Image();
+        explosion.src = "images/Explosion.png";
+        const spriteWidth = explosion.width/8;
+        const spriteHeight = explosion.height;
+        let frameX =0;
+        let animationActive = true;
+        let gameFrame = 0;
+        const staggerFrames = 15;
+        function animate(){
+            if (!animationActive){
+                return;
+            }  
+
+            ctx.clearRect(0,0,canvas.width, canvas.height);
+            ctx.drawImage(explosion,frameX* spriteWidth,0,spriteWidth,spriteHeight, 0, 0, canvas.width, canvas.height);  
+            if (gameFrame % staggerFrames ==0){
+                if (frameX < 8) {
+                    frameX++;
+                }else {
+                    frameX =0;
+                    animationActive = false;
+                }
+            }          
+            gameFrame++;
+            if (animationActive){
+                requestAnimationFrame(animate);
+            } 
+        }
+        
+        animate();
+        
+    </script>
+</body>
+</html>
+

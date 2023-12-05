@@ -1,0 +1,547 @@
+/*Using a universal selector to set a default global text color and provide a neater page layout*/
+* {
+  box-sizing: border-box;
+  color: #d0cfcf;
+}
+
+/*Adding a color-switching gradient as background*/
+body {
+  margin: 0;
+  background: linear-gradient(
+    45deg,
+    #070720 0%,
+    #232050 25%,
+    #170f44 50%,
+    #0a0e25 75%,
+    #05050c 100%
+  );
+  background-size: 400% 400%;
+  font-family: "Pixelify Sans", sans-serif;
+  animation: background-animation 20s ease-in-out infinite alternate;
+}
+/*Colour of gradient changes(moves) from left to right*/
+@keyframes background-animation {
+  0% {
+    background-position: left;
+  }
+  100% {
+    background-position: right;
+  }
+}
+
+/*Styling the top wave and animating it to provide a wave motion effect*/
+.top-wave {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.top-wave svg {
+  position: relative;
+  display: block;
+  width: calc(200% + 1.3px);
+  height: 40px;
+  animation: topWaveAnimation 15s linear infinite alternate;
+}
+
+.top-wave .shape-fill {
+  fill: #03030a;
+}
+
+@keyframes topWaveAnimation {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/*Header Styling*/
+header {
+  text-align: center;
+  padding: 25px;
+  width: 100%;
+}
+.title-logo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1em;
+  width: 30%;
+}
+
+.Navigation-Bar {
+  display: block;
+  border: 3px solid white;
+  width: 45%;
+  background-color: #5c4a72;
+  color: black;
+  padding: 6px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2em;
+  margin-top: -1em;
+  border-radius: 20px;
+}
+
+.Nav-Item {
+  margin-left: 9.5%;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+/*Adding highlight effect when hovering over an item in the navigation bar*/
+.Nav-Item:hover {
+  background-color: black;
+  border-radius: 10px;
+}
+.Nav-Item:active {
+  background-color: grey;
+}
+
+/*Home Page Styling*/
+section {
+  background: linear-gradient(to bottom, #1a1a1a, #070720);
+  border: 4px solid white;
+  border-radius: 30px;
+  width: 40%;
+  float: left;
+  padding: 10px;
+  height: 24em;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 6.5%;
+  text-align: center;
+  font-family: "Pixelify Sans", sans-serif;
+  box-shadow: 0px 0px 20px silver;
+}
+section h2 {
+  font-size: 35px;
+  color: #ff88ff;
+}
+
+/*Footer Styling*/
+footer {
+  display: block;
+  clear: both;
+  text-align: center;
+  padding-top: 2em;
+}
+.socials {
+  width: 3%;
+  height: 3%;
+}
+
+/*Styling the bottom wave and animating it to provide a wave motion effect*/
+.bottom-wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+}
+
+.bottom-wave svg {
+  position: relative;
+  display: block;
+  width: calc(200% + 1.3px);
+  height: 38px;
+  animation: bottomWaveAnimation 15s linear infinite alternate;
+}
+
+.bottom-wave .shape-fill {
+  fill: #03030a;
+}
+
+@keyframes bottomWaveAnimation {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/*Game Page Styling*/
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+/*Adding a space background and animating it to provide the effect of moving forward*/
+#gameArea {
+  display: block;
+  position: relative;
+  /* z-index: 1; */
+  border: 4px solid;
+  border-image-slice: 1;
+  border-image-source: radial-gradient(
+    #6f6bb3 0%,
+    #7373ff 47%,
+    #a6f0ff 100%
+  );
+  /* background-image: url("https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTB8fHxlbnwwfHx8fHw%3D"); */
+  background-image: url("../images/space_background.jpg");
+  background-repeat: repeat-y;
+  background-size: cover;
+  left: 1em;
+  animation: none;
+  /* animation: scroll 15s linear infinite reverse; */
+}
+.start-menu{
+  display: block;
+  position: absolute;
+  z-index: 2;
+  top: 18.7em;
+  left: 1.9em;
+  width: 77%; /*80%*/
+  height: 24.9em;
+  /* border-radius: 20px; */
+  border: 4px solid;
+  border-image-slice: 1;
+  border-image-source: radial-gradient(
+    #6f6bb3 0%,
+    #7373ff 47%,
+    #a6f0ff 100%
+  );
+  background-image: url("../images/space_background.webp");
+  background-repeat: repeat-y;
+  background-size: cover;
+  /* right: 13em; */
+  /* animation: none; */
+  animation: scroll 15s linear infinite reverse;
+}
+@keyframes scroll {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 0 100%;
+  }
+}
+.game-title{
+  color: #ff88ff;
+  text-align: center;
+  font-size: 60px;
+  animation: blink 1s linear infinite alternate;
+}
+.menu-button{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 3em;
+  position: relative;
+  top: 3em;
+  width: 13%;
+  height: 10%;
+  border-radius: 20px;
+  color: rgb(31, 54, 143);
+  background-color: #ffcc00;
+  font-family: "Pixelify Sans", sans-serif;
+  font-size: 15px;
+}
+.Start {
+  display: block;
+  font-size: 25px;
+  width: 25%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -14em;
+  color: white;
+  animation: blink 1s linear infinite alternate;
+}
+/*Creating a blinking text effect for the Game Start text on the game window*/
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+  80% {
+    opacity: 0.5;
+  }
+}
+
+/*Styling the on-screen buttons*/
+.left-arrow {
+  display: none;
+  height: 5em;
+  position: relative;
+  right: 13em;
+  top: 23em;
+  padding: 10px 10px;
+  cursor: pointer;
+  background-color: silver;
+  border-radius: 15px;
+  box-shadow: 0 6px #999; 
+}
+.right-arrow {
+  display: none;
+  height: 5em;
+  position: relative;
+  right: 6em;
+  top: 18em;
+  padding: 10px 10px;
+  cursor: pointer;
+  background-color: silver;
+  border-radius: 15px;
+  box-shadow: 0 6px #999; 
+}
+.right-arrow:hover,
+.left-arrow:hover {
+  background-color: #ffcc00;
+}
+
+.right-arrow:active,
+.left-arrow:active {
+  background-color: beige;
+  box-shadow: 0 6px #666;
+  transform: translateY(8px);
+}
+
+/*Positioning the spaceship and asteroids on the game windows*/
+.spaceship {
+  /* display: none; */
+  width: 4%;
+  height: 10%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 17em;
+}
+
+.asteroid1 {
+  width: 4%;
+  height: 10%;
+  display: block;
+  margin-top: -21%;
+  margin-left: 45%;
+}
+
+.asteroid2 {
+  width: 4%;
+  height: 10%;
+  display: block;
+  margin-top: 3%;
+  margin-left: 35%;
+}
+
+.asteroid3 {
+  width: 4%;
+  height: 10%;
+  display: block;
+  margin-top: -5%;
+  margin-left: 55%;
+}
+
+.asteroid4 {
+  width: 4%;
+  height: 10%;
+  display: block;
+  margin-top: 3%;
+  margin-left: 50%;
+}
+
+.leaderboard-widget {
+  /* display: block; */
+  position: relative;
+  right: 1em;
+  border: 4px solid white;
+  border-radius: 20px;
+  width: 15em;
+  height: 99%;
+  text-align: center;
+  overflow: hidden;
+  background: linear-gradient(to bottom, #1a1a1a, #070720);
+}
+
+/*Sign Up and Login Page Styling*/
+.user-form {
+  display: block;
+  width: 50%;
+  height: 25.5em;
+  border-bottom-right-radius: 90px;
+  border-top-left-radius: 90px;
+  box-shadow: 0px 0px 20px 0 silver;
+  background: linear-gradient(to bottom, #1a1a1a, #070720);
+  padding: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2.2%;
+  text-align: center;
+  font-family: "Pixelify Sans", sans-serif;
+  border: 4px solid silver;
+}
+.user-form input {
+  color: black;
+}
+
+.user-form h1 {
+  color: #0099ff;
+  margin-top: 0px;
+}
+
+.entry-field {
+  display: block;
+  border-radius: 20px;
+  padding: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1%;
+  width: 72%;
+  border: 2px solid #999;
+  text-align: center;
+}
+
+.showHideButton{
+  position: relative;
+  display: block;
+  left: 33.9rem; 
+  bottom: 3.45em;
+  width: 4em;
+  height: 2.96em;
+  outline:none;
+  text-align: center;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-color: #999;
+  background-color: transparent;
+  color: #0099ff;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: -2em;
+}
+
+.confirm-button {
+  color: white;
+  width: 40%;
+  background-color: rgb(161, 161, 161);
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-family: "Pixelify Sans", sans-serif;
+  font-size: 15px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.confirm-button:hover {
+  background-color: grey;
+}
+
+/*Styling the OR separating line*/
+hr {
+  margin-top: 30px;
+  width: 100%;
+}
+
+.or {
+  background: grey;
+  border-radius: 20px;
+  width: 30px;
+  margin: -19px auto 10px;
+}
+
+.user-icon {
+  width: 8%;
+  margin-top: -50px;
+}
+
+.gender-options {
+  margin-bottom: 10px;
+}
+
+.date-of-birth {
+  border-radius: 20px;
+  border: 2px solid #d0cfcf;
+  padding: 0px;
+  margin: 5px;
+  font-family: "Pixelify Sans", sans-serif;
+}
+
+/*Leaderboard Page*/
+.score-table {
+  margin-left: auto;
+  margin-right: auto;
+  border: 5px solid silver;
+  border-radius: 20px;
+  width: 70%;
+  height: 24em;
+  text-align: center;
+  overflow: hidden;
+  background: linear-gradient(to bottom, #1a1a1a, #070720);
+}
+
+th {
+  background-color: #272727;
+  color: #00ffaa;
+}
+
+td {
+  color: #ffcc00;
+}
+.ranking {
+  width: 10%;
+}
+
+/*Settings Page styling*/
+.settings-box {
+  background: linear-gradient(to bottom, #1a1a1a, #070720);
+  color: #5c4a72;
+  border: 3px solid silver;
+  width: 40%;
+  height: 25em;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.Account-button {
+  background-color: #0099ff;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  height: 2em;
+  width: auto;
+  margin-left: 25%;
+  font-family: "Pixelify Sans", sans-serif;
+  position: relative;
+  top: 50px;
+  font-size: 16px;
+}
+
+.Account-button:hover {
+  background-color: #373737;
+}
+
+/*Styling the volume controls*/
+.volume-slider {
+  -webkit-appearance: none;
+  background-color: #2d2d2d;
+  height: 1em;
+  width: 40%;
+  margin-left: 29%;
+  border-radius: 5px;
+}
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 25px;
+  height: 25px;
+  margin-top: -6px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.volume-slider::-webkit-slider-runnable-track {
+  background: #0099ff;
+  border-radius: 5px;
+  width: 100%;
+  height: 10px;
+}

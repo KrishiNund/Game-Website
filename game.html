@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game Page</title>
+    <!--Favicon-->
+    <link rel="icon" type="image/x-icon" href="images/alien ship.png" />
+    <link rel="stylesheet" href="CSS/style.css" />
+    <!--Link to Google font being used-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!--Adding a top wave element-->
+    <div class="top-wave">
+      <svg
+        data-name="Layer 1"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 1200 120"
+        preserveAspectRatio="none"
+      >
+        <path
+          d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
+          opacity=".25"
+          class="shape-fill"
+        ></path>
+        <path
+          d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z"
+          opacity=".5"
+          class="shape-fill"
+        ></path>
+        <path
+          d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z"
+          class="shape-fill"
+        ></path>
+      </svg>
+    </div>
+    <!--Header comprising of logo and title-->
+    <header>
+      <img
+        class="title-logo"
+        src="images/logo and title1.png"
+        alt="title-logo"
+      />
+    </header>
+    <!--Navigation bar-->
+    <nav class="Navigation-Bar">
+      <span title="Home"
+        ><a class="Nav-Item" href="home.html"
+          ><img src="images/icons8-home-32.png" alt="Home" /></a
+      ></span>
+      <span title="Play Game"
+        ><a class="Nav-Item" href="game.html"
+          ><img src="images/icons8-circled-play-32.png" alt="Play Game" /></a
+      ></span>
+      <span title="Leaderboards"
+        ><a class="Nav-Item" href="leaderboard.html"
+          ><img src="images/icons8-leaderboards-32.png" alt="Leaderboard" /></a
+      ></span>
+      <span title="Sign Up"
+        ><a class="Nav-Item" href="sign up.html"
+          ><img src="images/icons8-sign-up-32.png" alt="Sign Up" /></a
+      ></span>
+      <span title="Login"
+        ><a class="Nav-Item" href="login.html"
+          ><img src="images/icons8-login-32.png" alt="Login" /></a
+      ></span>
+      <span title="Settings"
+        ><a class="Nav-Item" href="settings.html"
+          ><img src="images/icons8-settings-32.png" alt="Settings" /></a
+      ></span>
+    </nav>
+
+    <main>
+      <!--creating the game window, basically where we will play the game-->
+      <div class="flex-container">
+
+        <div class="start-menu">
+          <p class="game-title">SPACE SHOOTERS</p>
+          <button type="button" class="menu-button" onclick="moveToSignUp()">Sign Up</button>
+          <button type="button" class="menu-button" onclick="moveToLogin()">Log In</button>
+        </div>
+
+        <div>
+            <canvas id="gameArea" height="390" width="1100" ></canvas>
+        </div>
+        
+        <div>
+          <button type="button" class="left-arrow" onclick="moveLeft()">
+            <img src="images/icons8-left-arrow-48.png" alt="Left Arrow">
+          </button>
+          <button type="button" class="right-arrow">
+            <img src="images/icons8-right-arrow-48.png" alt="Right Arrow" onclick="moveRight()">
+          </button>
+        </div>
+        
+        <!--adding a leaderboard widget to view scores while playing-->
+        <div>
+          <table class="leaderboard-widget">
+            
+            <th>User</th>
+            <th>Top Score</th>
+            
+            
+            <!-- <tr>
+              <td>
+                <img
+                  class="ranking"
+                  src="images/icons8-gold-medal-48.png"
+                  alt="Gold Trophy"
+                />User1
+              </td>
+              <td>1000</td>
+            </tr>
+            <tr>
+              <td>
+                <img
+                  class="ranking"
+                  src="images/icons8-silver-medal-48.png"
+                  alt="Silver trophy"
+                />User2
+              </td>
+              <td>1200</td>
+            </tr>
+            <tr>
+              <td>
+                <img
+                  class="ranking"
+                  src="images/icons8-bronze-medal-48.png"
+                  alt=""
+                />User3
+              </td>
+              <td>2400</td>
+            </tr>
+            <tr>
+              <td>User4</td>
+              <td>2100</td>
+            </tr> -->
+          </table>
+        </div>
+      </div>
+    </main>
+
+    <!--Footer-->
+    <footer>
+      <!--Bottom wave element-->
+      <div class="bottom-wave">
+        <svg
+          data-name="Layer 1"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1200 120"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
+            opacity=".25"
+            class="shape-fill"
+          ></path>
+          <path
+            d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z"
+            opacity=".5"
+            class="shape-fill"
+          ></path>
+          <path
+            d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z"
+            class="shape-fill"
+          ></path>
+        </svg>
+      </div>
+      <!--Socials-->
+      <div>
+        <a href="https://www.reddit.com/"
+          ><img class="socials" src="images/reddit.png" alt="Reddit"
+        /></a>
+        <a href="https://www.instagram.com/"
+          ><img class="socials" src="images/instagram.png" alt="Instagram"
+        /></a>
+        <a href="https://www.facebook.com/"
+          ><img class="socials" src="images/facebook.png" alt="Facebook"
+        /></a>
+      </div>
+      <!--Copyright Text-->
+      <small>Copyright &copy; 2023. All Rights Reserved. </small>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="JS/update_gamepage.js"></script>
+    <script src="JS/game.js"></script>
+  </body>
+</html>
+
