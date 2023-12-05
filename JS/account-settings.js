@@ -94,3 +94,9 @@ function logOut(){
     })
     
 }
+
+function adjustVolume(){
+    let volume = document.getElementById("soundFXVolume").value / 100;
+    console.log(volume);
+    sessionStorage.setItem("soundFXVolume", volume);
+}

@@ -92,11 +92,13 @@
         <br />
         <h3 style="text-align: center">Sound FX Volume:</h3>
         <input
+          id="soundFXVolume"
           class="volume-slider"
           type="range"
           min="0"
           max="100"
-          value="50"
+          value="1"
+          onchange="adjustVolume()"
         />
 
         <!--Account Settings Buttons-->

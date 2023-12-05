@@ -28,6 +28,7 @@ function drawStartText() {
 }
 drawStartText();
 
+let explosionsArray = [];
 let gameOver = false;
 function drawOnCanvas(){
   if (!gameOver){
@@ -35,6 +36,7 @@ function drawOnCanvas(){
     drawSpaceship();
     drawBullets();
     drawObstacles();
+    drawExplosions();
     drawHeadUpDisplay();
     detectCollisions();
     detectCollisionsBetweenShipAndObstacles();
@@ -45,6 +47,16 @@ function drawOnCanvas(){
   } 
 }
 
+function drawExplosions(){
+  // let activeExplosions = [];
+
+  for (let i =0; i < explosionsArray.length; i++){
+    const explosion = explosionsArray[i];
+    if (explosion.active){
+      animateExplosion(explosion.x,explosion.y,i);
+    }
+  }
+}
 //adding spaceship image/sprite
 const spaceship = new Image();
 spaceship.src = "images/playerShip1_orange.png";
@@ -54,6 +66,14 @@ function drawSpaceship(){
   ctx.drawImage(spaceship, spaceshipInfo.x, spaceshipInfo.y, spaceshipInfo.width,spaceshipInfo.height);
 }
 
+//adding sound when shooting bullets
+const bulletSound = new Audio;
+bulletSound.src ="sounds/laser1.ogg";
+
+let fxVolume = sessionStorage.getItem("soundFXVolume");
+console.log(fxVolume);
+const laserSound = document.getElementById("laser");
+laserSound.volume = fxVolume;
 //firing bullets/shooting
 function fireBullets(event){
   if (event.key === " "){
@@ -65,6 +85,8 @@ function fireBullets(event){
           used : false
       };
       bulletsArray.push(bullet);
+      laserSound.play();
+      // bulletSound.play();
   }
 }
 
@@ -201,6 +223,10 @@ function drawObstacles() {
 let score = 0;
 let numAsteroidHit =0;
 let numSpaceshipHit = 0;
+
+//adding sound when bullet hits obstacle
+const collisionSound = new Audio;
+collisionSound.src ="sounds/explosion6.ogg";
 function detectCollisions() {
   for (let i = 0; i < bulletsArray.length; i++) {
     let bullet = bulletsArray[i];
@@ -227,12 +253,10 @@ function detectCollisions() {
             numSpaceshipHit++;
             score+=1000;
           }
-          let x = obstacle.x;
-          let y = obstacle.y;
+          explosionsArray.push({x:obstacle.x, y:obstacle.y, active:true});
+          collisionSound.play();
           bulletsArray.splice(i, 1);
           obstaclesArray.splice(j, 1);
-          animationActive = true;
-          animate(x,y);
           trackScore();
           updateTopScore();
           
@@ -490,26 +514,26 @@ const spriteHeight = explosion.height;
 let frameX =0;
 let animationActive = true;
 let gameFrame = 0;
-const staggerFrames = 45;
+const staggerFrames = 5;
 
-function animate(x,y){
-  if (!animationActive){
+function animateExplosion(x,y, index){   
+  if (!explosionsArray[index].active){
     return;
-  }         
-  // ctx.clearRect(x,y,50, 50);
-  // ctx.clearRect(x-5,y-25,120, 120);
+  }    
   ctx.drawImage(explosion,frameX*spriteWidth,0,spriteWidth,spriteHeight, x-5, y-25, 120, 120);
   if (gameFrame % staggerFrames == 0){
     if (frameX < 9) {
       frameX++;
     }else {
       frameX =0;
-      animationActive = false;
+      // animationActive = false;
+      explosionsArray[index].active = false;
     }
   }
   gameFrame++;
-  if (animationActive){
-    requestAnimationFrame(animate);
+
+  if (explosionsArray[index].active){
+    requestAnimationFrame(() => animate(x,y,index));
   }
 }
         
