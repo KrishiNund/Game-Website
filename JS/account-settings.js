@@ -95,8 +95,20 @@ function logOut(){
     
 }
 
-function adjustVolume(){
-    let volume = document.getElementById("soundFXVolume").value / 100;
-    console.log(volume);
+function adjustFxVolume(){
+    let volumeSlider = document.getElementById("soundFXVolume");
+    let volume = volumeSlider.value;
     sessionStorage.setItem("soundFXVolume", volume);
 }
+
+currentFxVolume = sessionStorage.getItem("soundFXVolume");
+document.getElementById("soundFXVolume").value = currentFxVolume;
+
+function adjustBgVolume(){
+    let volumeSlider = document.getElementById("backgroundSoundVolume");
+    let volume = volumeSlider.value;
+    sessionStorage.setItem("bgVolume", volume);
+}
+
+currentBgVolume = sessionStorage.getItem("bgVolume");
+document.getElementById("backgroundSoundVolume").value = currentBgVolume;

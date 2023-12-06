@@ -67,25 +67,25 @@ function drawSpaceship(){
 }
 
 //adding sound when shooting bullets
-const bulletSound = new Audio;
-bulletSound.src ="sounds/laser1.ogg";
 
 let fxVolume = sessionStorage.getItem("soundFXVolume");
 console.log(fxVolume);
+
 const laserSound = document.getElementById("laser");
-laserSound.volume = fxVolume;
+laserSound.volume = fxVolume/100;
+
 //firing bullets/shooting
 function fireBullets(event){
   if (event.key === " "){
-      let bullet = {
-          x : spaceshipInfo.x + spaceshipInfo.width/2.1,
-          y : spaceshipInfo.y - 10,
-          width : 2,
-          height : 10,
-          used : false
-      };
-      bulletsArray.push(bullet);
-      laserSound.play();
+    let bullet = {
+        x : spaceshipInfo.x + spaceshipInfo.width/2.1,
+        y : spaceshipInfo.y - 10,
+        width : 2,
+        height : 10,
+        used : false
+    };
+    bulletsArray.push(bullet);
+    laserSound.play();
       // bulletSound.play();
   }
 }
@@ -108,7 +108,6 @@ function drawBullets(){
     ctx.lineCap = "round";
     ctx.strokeRect(bullet.x, bullet.y, bullet.width, bullet.height);
     ctx.fillRect(bullet.x, bullet.y, bullet.width, bullet.height);
-    
     if (bullet.y > 0){
       onScreenBullets.push(bullet);
     }
@@ -124,6 +123,12 @@ let healthBar = document.getElementById("HPBar");
 document.addEventListener("keyup", startGame);
 let gameStarted = false;
 
+//adding background music when starting game
+let bgVolume = sessionStorage.getItem("bgVolume");
+console.log(bgVolume);
+
+const bgMusic = document.getElementById("backgroundMusic");
+bgMusic.volume = bgVolume/100;
 function startGame(event) {
   if (event.key === "Enter" && gameStarted == false) {
     gameStarted = true;
@@ -137,6 +142,7 @@ function startGame(event) {
     document.addEventListener("keydown",moveSpaceship);
     document.addEventListener("keyup",useSpecialAbility);
     document.addEventListener("keydown",quitGame);
+    bgMusic.play();
   }
 }
 
@@ -225,8 +231,8 @@ let numAsteroidHit =0;
 let numSpaceshipHit = 0;
 
 //adding sound when bullet hits obstacle
-const collisionSound = new Audio;
-collisionSound.src ="sounds/explosion6.ogg";
+const collisionSound1 = document.getElementById("collision1");
+collisionSound1.volume = fxVolume/100;
 function detectCollisions() {
   for (let i = 0; i < bulletsArray.length; i++) {
     let bullet = bulletsArray[i];
@@ -254,20 +260,19 @@ function detectCollisions() {
             score+=1000;
           }
           explosionsArray.push({x:obstacle.x, y:obstacle.y, active:true});
-          collisionSound.play();
+          collisionSound1.play();
           bulletsArray.splice(i, 1);
           obstaclesArray.splice(j, 1);
           trackScore();
           updateTopScore();
-          
-          // drawScoreboardWidget();
-          // You might also want to play an explosion animation or update the score here
         }
       }
     }
   }
 }
-
+//adding sound when spaceship collides with obstacle
+const collisionSound2 = document.getElementById("collision2");
+collisionSound2.volume = fxVolume/100;
 function detectCollisionsBetweenShipAndObstacles() {
   for (let j = 0; j < obstaclesArray.length; j++) {
     let obstacle = obstaclesArray[j];
@@ -281,6 +286,8 @@ function detectCollisionsBetweenShipAndObstacles() {
       if (obstacle.type == asteroid || obstacle.type == enemyShip1 || obstacle.type == enemyShip2){
       obstaclesArray.splice(j, 1);
       updateHPBar();
+      collisionSound2.play();
+
       // You might also want to play an explosion animation or update the score here
       } else if (obstacle.type == spRecoveryPill){
         obstaclesArray.splice(j, 1);
@@ -334,32 +341,29 @@ function drawHeadUpDisplay(){
   } 
 
   //drawing user, level and scores
-  ctx.fillStyle = "white";
-  ctx.fillText(`User:${currentlyLoggedInAccount}`,885,120,55);
+  ctx.fillStyle = "gold";
+  ctx.fillText(`User:${currentlyLoggedInAccount}`,895,120,65);
 
-  ctx.fillStyle = "white";
-  ctx.fillText(`Level:${level}`,885,150,55);
-
-  ctx.fillStyle = "white";
-  ctx.fillText(`Score:${score}`,890,180,70);
+  ctx.fillText(`Level:${level}`,980,120,55);
+ 
+  ctx.fillText(`Score:${score}`,895,150,70);
 
   //objectives
-  ctx.fillStyle = "white";
-  ctx.fillText("Objectives:",895,210,80);
+  ctx.fillText("Objectives:",900,180,80);
 
   if (level == 1){
     ctx.fillStyle = "white";
-    ctx.fillText(`Asteroids:${numAsteroidHit}/20`,900,240,90);   
+    ctx.fillText(`- Asteroids:${numAsteroidHit}/20`,905,210,90);   
   }
   if (level == 2){
     ctx.fillStyle = "white";
-    ctx.fillText(`Asteroids:${numAsteroidHit}/10`,900,240,90);   
-    ctx.fillText(`Spaceships:${numSpaceshipHit}/20`,900,270,90);   
+    ctx.fillText(`-Asteroids:${numAsteroidHit}/10`,905,210,90);   
+    ctx.fillText(`-Spaceships:${numSpaceshipHit}/20`,905,240,90);   
   }
   if (level == 3){
     ctx.fillStyle = "white";
-    ctx.fillText(`Asteroids:${numAsteroidHit}/20`,900,240,90);   
-    ctx.fillText(`Spaceships:${numSpaceshipHit}/20`,900,270,90);    
+    ctx.fillText(`-Asteroids:${numAsteroidHit}/20`,905,210,90);   
+    ctx.fillText(`-Spaceships:${numSpaceshipHit}/20`,905,240,90);    
   }
 }
 
@@ -385,6 +389,7 @@ function updateHPBar(){
             location.reload();
         } 
       })
+      bgMusic.pause();
     }
   } else{
     ctx.strokeRect(890,30,200,20);
@@ -428,12 +433,17 @@ function specialAbilityOver(){
 
 let level1Completed = false;
 let level2Completed = false;
+
+//adding sound when new level reached
+const warp = document.getElementById("warp");
+warp.volume = fxVolume/100;
 function trackScore(){
   if (numAsteroidHit >= 20 && level1Completed == false){
     level++;
     numAsteroidHit=0;
     level1Completed = true;
     typeOfObstacles.push(enemyShip1);
+    warp.play();
   }
   if (numAsteroidHit >= 10 && numSpaceshipHit >= 20 && level2Completed == false){
     level ++;
@@ -441,6 +451,7 @@ function trackScore(){
     numSpaceshipHit = 0;
     level2Completed = true;
     typeOfObstacles.push(enemyShip2);
+    warp.play();
   }
 }
 

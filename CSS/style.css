@@ -19,6 +19,20 @@ body {
   font-family: "Pixelify Sans", sans-serif;
   animation: background-animation 20s ease-in-out infinite alternate;
 }
+
+/*adding texture on top of gradient background to feel empty space*/
+body::after{
+  content: "";
+  background:url('../images/graphy-dark.png');
+  opacity: 0.5;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
 /*Colour of gradient changes(moves) from left to right*/
 @keyframes background-animation {
   0% {
@@ -28,7 +42,6 @@ body {
     background-position: right;
   }
 }
-
 /*Styling the top wave and animating it to provide a wave motion effect*/
 .top-wave {
   position: absolute;
