@@ -148,6 +148,7 @@ section span {
   color: gold;
   font-weight: bold;
 }
+
 /*Footer Styling*/
 footer {
   display: block;
@@ -204,7 +205,6 @@ footer {
 #gameArea {
   display: block;
   position: relative;
-  /* z-index: 1; */
   border: 4px solid;
   border-image-slice: 1;
   border-image-source: radial-gradient(
@@ -218,6 +218,7 @@ footer {
   left: 1em;
   animation: none;
 }
+
 .start-menu{
   display: block;
   position: absolute;
@@ -321,55 +322,18 @@ footer {
   transform: translateY(8px);
 }
 
-/*Positioning the spaceship and asteroids on the game windows*/
-.spaceship {
-  width: 4%;
-  height: 10%;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 17em;
-}
-
-.asteroid1 {
-  width: 4%;
-  height: 10%;
-  display: block;
-  margin-top: -21%;
-  margin-left: 45%;
-}
-
-.asteroid2 {
-  width: 4%;
-  height: 10%;
-  display: block;
-  margin-top: 3%;
-  margin-left: 35%;
-}
-
-.asteroid3 {
-  width: 4%;
-  height: 10%;
-  display: block;
-  margin-top: -5%;
-  margin-left: 55%;
-}
-
-.asteroid4 {
-  width: 4%;
-  height: 10%;
-  display: block;
-  margin-top: 3%;
-  margin-left: 50%;
-}
-
 .leaderboard-widget {
   position: relative;
   right: 1em;
-  border: 4px solid white;
-  border-radius: 20px;
+  border: 4px solid;
+  border-image-slice: 1;
+  border-image-source: radial-gradient(
+    #6f6bb3 0%,
+    #7373ff 47%,
+    #a6f0ff 100%
+  );
   width: 15em;
-  height: 99%;
+  height: 100%;
   text-align: center;
   overflow: hidden;
   background: linear-gradient(to bottom, #1a1a1a, #070720);
@@ -501,11 +465,13 @@ th {
 td {
   color: #ffcc00;
 }
-.ranking {
-  width: 10%;
+
+.sortingButton{
+  background-color: transparent;
+  border:0 ;
+  /* border-radius: 20px; */
 }
 
-/*Settings Page styling*/
 /*styling settings box*/
 .settings-box {
   background: linear-gradient(to bottom, #1a1a1a, #070720);

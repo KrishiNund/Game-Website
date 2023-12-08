@@ -80,13 +80,19 @@
 
     <main>
       <!--Creating a table to score user scores, usernames and date highest score was registered-->
-      
+
       <table class="score-table">
         <thead>
           <th>User</th>
-          <th>Top Score</th>
+          <th>
+            Top Score
+            <button class="sortingButton" onclick="sortTable()">
+              <img src="images/sort.png" alt="sorting button" />
+            </button>
+          </th>
           <th>Date Achieved</th>
         </thead>
+        <tbody id="tableBody"></tbody>
       </table>
     </main>
 

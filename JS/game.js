@@ -306,8 +306,8 @@ let currentlyLoggedInAccount = sessionStorage.getItem("loggedInUser");
 function drawHeadUpDisplay(){
   //create dashboard section
   ctx.lineWidth = "5";
-  ctx.strokeStyle = "#a6f0ff";
-  ctx.fillStyle = "rgba(255, 255, 255, 0.6)";
+  ctx.strokeStyle = "#7373ff";
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
   ctx.strokeRect(850,0,250,250);
   ctx.fillRect(850,0,250,250);
 
@@ -433,6 +433,7 @@ function specialAbilityOver(){
 
 let level1Completed = false;
 let level2Completed = false;
+let level3Completed = false;
 
 //adding sound when new level reached
 const warp = document.getElementById("warp");
@@ -452,6 +453,21 @@ function trackScore(){
     level2Completed = true;
     typeOfObstacles.push(enemyShip2);
     warp.play();
+  }
+  if (numAsteroidHit >= 20 && numSpaceshipHit >= 20 && level3Completed == false){
+    level ++;
+    numAsteroidHit = 0;
+    numSpaceshipHit = 0;
+    level3Completed = true;
+    Swal.fire({
+      title: 'Congratulations!!',
+      text:`You've completed all 3 levels!`,
+      icon: 'info',
+      confirmButtonText: 'OK',
+      willClose: function(){
+          location.reload();
+        } 
+    }) 
   }
 }
 
@@ -477,8 +493,6 @@ function updateTopScore(){
 function drawScoreboardWidget(){
   let scoreboard = document.querySelector('.leaderboard-widget');
   usersArray = JSON.parse(localStorage.getItem("currentUsers")) || [];
-  // tbody.innerHTML = '';
-  // $(".leaderboard-widget tr").remove();
   for (let i =0; i < usersArray.length; i++){
       let row = scoreboard.insertRow();
       let username = row.insertCell(0);
@@ -488,7 +502,6 @@ function drawScoreboardWidget(){
       score.innerHTML = usersArray[i].TopScore;
       console.log(usersArray[i].TopScore);
   }
-  
 }
 drawScoreboardWidget();
 
