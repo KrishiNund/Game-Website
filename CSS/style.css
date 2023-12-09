@@ -22,10 +22,10 @@ body {
 
 /*adding texture on top of gradient background*/
 /*pointer events set to "none" to allow interaction with other html elements*/
-body::after{
+body::after {
   content: "";
-  background:url('../images/cubes.png');
-  opacity: 0.25;
+  background: url("../images/cubes.png");
+  opacity: 0.22;
   position: absolute;
   top: 0;
   left: 0;
@@ -123,6 +123,8 @@ header {
 }
 
 /*Home Page Styling*/
+
+/*Adding styling to section boxes*/
 section {
   background: linear-gradient(to bottom, #1a1a1a, #070720);
   border: 4px solid white;
@@ -138,12 +140,14 @@ section {
   font-family: "Pixelify Sans", sans-serif;
   box-shadow: 0px 0px 20px silver;
 }
+/*Styling section box heading*/
 section h2 {
   font-size: 35px;
   color: #ff88ff;
   text-align: center;
 }
 
+/*making the main game features appear gold colour and bold*/
 section span {
   color: gold;
   font-weight: bold;
@@ -156,6 +160,7 @@ footer {
   text-align: center;
   padding-top: 2em;
 }
+/*adjusting size of social icons*/
 .socials {
   width: 3%;
   height: 3%;
@@ -195,6 +200,7 @@ footer {
 }
 
 /*Game Page Styling*/
+/*display set to flex to allow divs on same level/line*/
 .flex-container {
   display: flex;
   flex-direction: row;
@@ -207,19 +213,15 @@ footer {
   position: relative;
   border: 4px solid;
   border-image-slice: 1;
-  border-image-source: radial-gradient(
-    #6f6bb3 0%,
-    #7373ff 47%,
-    #a6f0ff 100%
-  );
+  border-image-source: radial-gradient(#6f6bb3 0%, #7373ff 47%, #a6f0ff 100%);
   background-image: url("../images/space_background.webp");
   background-repeat: repeat-y;
   background-size: cover;
   left: 1em;
   animation: none;
 }
-
-.start-menu{
+/*styling the start menu where user can choose to log in or sign up*/
+.start-menu {
   display: block;
   position: absolute;
   z-index: 2;
@@ -229,11 +231,7 @@ footer {
   height: 24.9em;
   border: 4px solid;
   border-image-slice: 1;
-  border-image-source: radial-gradient(
-    #6f6bb3 0%,
-    #7373ff 47%,
-    #a6f0ff 100%
-  );
+  border-image-source: radial-gradient(#6f6bb3 0%, #7373ff 47%, #a6f0ff 100%);
   background-image: url("../images/space_background.webp");
   background-repeat: repeat-y;
   background-size: cover;
@@ -250,15 +248,16 @@ footer {
   }
 }
 
-.game-title{
+/*making the game title blink*/
+.game-title {
   color: #ff88ff;
   text-align: center;
   font-size: 60px;
   animation: blink 1s linear infinite alternate;
 }
 
-/*Styling Menu Buttons on Game Start Page*/
-.menu-button{
+/*Styling Menu Buttons (Log in/ Sign Up) on Game Start Page*/
+.menu-button {
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -274,7 +273,7 @@ footer {
   font-size: 15px;
 }
 
-/*Creating a blinking text effect for the Game Start text on the game window*/
+/*Creating a blinking text effect for the "Space Shooters" text on the game start window*/
 @keyframes blink {
   50% {
     opacity: 0;
@@ -295,7 +294,7 @@ footer {
   cursor: pointer;
   background-color: silver;
   border-radius: 15px;
-  box-shadow: 0 6px #999; 
+  box-shadow: 0 6px #999;
 }
 .right-arrow {
   display: none;
@@ -307,7 +306,7 @@ footer {
   cursor: pointer;
   background-color: silver;
   border-radius: 15px;
-  box-shadow: 0 6px #999; 
+  box-shadow: 0 6px #999;
 }
 
 .right-arrow:hover,
@@ -322,16 +321,13 @@ footer {
   transform: translateY(8px);
 }
 
+/*styling the leaderboard widget*/
 .leaderboard-widget {
   position: relative;
   right: 1em;
   border: 4px solid;
   border-image-slice: 1;
-  border-image-source: radial-gradient(
-    #6f6bb3 0%,
-    #7373ff 47%,
-    #a6f0ff 100%
-  );
+  border-image-source: radial-gradient(#6f6bb3 0%, #7373ff 47%, #a6f0ff 100%);
   width: 15em;
   height: 100%;
   text-align: center;
@@ -377,14 +373,14 @@ footer {
   text-align: center;
 }
 
-.showHideButton{
+.showHideButton {
   position: relative;
   display: block;
-  left: 33.9rem; 
+  left: 33.9rem;
   bottom: 3.45em;
   width: 4em;
   height: 2.96em;
-  outline:none;
+  outline: none;
   text-align: center;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
@@ -427,6 +423,7 @@ hr {
   margin: -19px auto 10px;
 }
 
+/*adjusting size of user profile icon on login and sign up pages*/
 .user-icon {
   width: 8%;
   margin-top: -50px;
@@ -456,20 +453,20 @@ hr {
   overflow: hidden;
   background: linear-gradient(to bottom, #1a1a1a, #070720);
 }
-
+/*styling headers*/
 th {
   background-color: #272727;
   color: #00ffaa;
 }
-
+/*styling data values*/
 td {
   color: #ffcc00;
 }
 
-.sortingButton{
+/*styling sorting button*/
+.sortingButton {
   background-color: transparent;
-  border:0 ;
-  /* border-radius: 20px; */
+  border: 0;
 }
 
 /*styling settings box*/

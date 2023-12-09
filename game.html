@@ -79,47 +79,54 @@
     <main>
       <!--creating the game window, basically where we will play the game-->
       <div class="flex-container">
-
         <div class="start-menu">
           <p class="game-title">SPACE SHOOTERS</p>
-          <button type="button" class="menu-button" onclick="moveToSignUp()">Sign Up</button>
-          <button type="button" class="menu-button" onclick="moveToLogin()">Log In</button>
+          <button type="button" class="menu-button" onclick="moveToSignUp()">
+            Sign Up
+          </button>
+          <button type="button" class="menu-button" onclick="moveToLogin()">
+            Log In
+          </button>
         </div>
 
         <div>
           <!--Adding the audio files for the game such as the collision with obstacles, firing bullets, etc-->
-            <canvas id="gameArea" height="390" width="1100" ></canvas>
-            <audio id="laser">
-              <source src="sounds/laser1.ogg" type="audio/mp3">
-            </audio>
-            <audio id="backgroundMusic">
-              <source src="sounds/8bit-spaceshooter.mp3" type="audio/mp3">
-            </audio>
-            <audio id="collision1">
-              <source src="sounds/explosion6.ogg" type="audio/mp3">
-            </audio>
-            <audio id="collision2">
-              <source src="sounds/explosion3.ogg" type="audio/mp3">
-            </audio>
-            <audio id="warp">
-              <source src="sounds/warpout.ogg" type="audio/mp3">
-            </audio>
+          <canvas id="gameArea" height="390" width="1100"></canvas>
+          <audio id="laser">
+            <source src="sounds/laser1.ogg" type="audio/mp3" />
+          </audio>
+          <audio id="backgroundMusic">
+            <source src="sounds/8bit-spaceshooter.mp3" type="audio/mp3" />
+          </audio>
+          <audio id="collision1">
+            <source src="sounds/explosion6.ogg" type="audio/mp3" />
+          </audio>
+          <audio id="collision2">
+            <source src="sounds/explosion3.ogg" type="audio/mp3" />
+          </audio>
+          <audio id="warp">
+            <source src="sounds/warpout.ogg" type="audio/mp3" />
+          </audio>
         </div>
-        
+
         <div>
           <!--Creating on screen buttons to navigate spaceship-->
           <button type="button" class="left-arrow" onclick="moveLeft()">
-            <img src="images/icons8-left-arrow-48.png" alt="Left Arrow">
+            <img src="images/icons8-left-arrow-48.png" alt="Left Arrow" />
           </button>
           <button type="button" class="right-arrow">
-            <img src="images/icons8-right-arrow-48.png" alt="Right Arrow" onclick="moveRight()">
+            <img
+              src="images/icons8-right-arrow-48.png"
+              alt="Right Arrow"
+              onclick="moveRight()"
+            />
           </button>
         </div>
-        
+
         <!--adding a leaderboard widget to view scores while playing-->
         <div>
           <table class="leaderboard-widget">
-            
+
             <th>User</th>
             <th>Top Score</th>
 
