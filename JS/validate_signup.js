@@ -4,9 +4,11 @@ function submitForm() {
   let username = document.getElementById("username").value;
   let dateOfBirth = document.getElementById("dateofbirth").value;
   let genders = document.querySelectorAll(".gender-options");
-  let genderSelected = document.querySelector(
+  let genderInput = document.querySelector(
     "input.gender-options:checked"
-  ).value;
+  );
+  //if genderInput is not null, value will be assigned to genderSelected or else null will be assigned to it
+  let genderSelected = genderInput ? genderInput.value : null;
 
   let warningText = "";
   let errorText = "";
@@ -38,6 +40,26 @@ function submitForm() {
 
     //if user meets age requirement, move on to this part
   } else {
+    //checking if entry fields are left empty
+    if (username == null || username == ""){
+      errorText += "Username field cannot be left <b> empty! </b> <br>";
+      errorCount++;
+    }
+
+    if (password == null || password == ""){
+      errorText += "Password field cannot be left <b> empty! </b> <br>";
+      errorCount++;
+    }
+
+    if (dateOfBirth == null || dateOfBirth == ""){
+      errorText += "Date of birth field cannot be left <b> empty! </b> <br>";
+      errorCount++;
+    }
+
+    if (genderSelected == null || genderSelected == ""){
+      errorText += "Gender field cannot be left <b> empty! </b> <br>";
+      errorCount++;
+    }
     //validating password and username
     //checking password length
     if (password.length < 8) {
