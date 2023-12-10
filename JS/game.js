@@ -75,8 +75,11 @@ function drawSpaceship() {
 //adding sound when shooting bullets
 
 let fxVolume = sessionStorage.getItem("soundFXVolume");
-console.log(fxVolume);
-
+//if volume slider has not been used yet, volume will be null
+//thus, default volume is set to 50
+if (fxVolume == null || fxVolume == ""){
+  fxVolume = 50;
+}
 //adjusting volume based on volume settings from settings page
 const laserSound = document.getElementById("laser");
 laserSound.volume = fxVolume / 100;
@@ -139,8 +142,12 @@ let gameStarted = false;
 
 //adding background music when starting game
 let bgVolume = sessionStorage.getItem("bgVolume");
-console.log(bgVolume);
 
+//if volume slider has not been used yet, volume will be null
+//thus, default volume is set to 50
+if (bgVolume == null || bgVolume == ""){
+  bgVolume = 50;
+}
 //adjusting background music's volume based on settings page
 const bgMusic = document.getElementById("backgroundMusic");
 bgMusic.volume = bgVolume / 100;
